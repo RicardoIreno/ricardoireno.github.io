@@ -1,0 +1,44 @@
+@mixin grid-system($bk) {
+	.col#{grid-generic-class-name($bk)} {
+		flex: 1;
+	}
+
+	@for $size from 1 through $total_columns {
+		.col#{grid-class-name($bk, $size)} {
+			width: calc($size / $total_columns * 100%);
+		}
+	}
+}
+
+.d-grid,
+.d-container {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $container_width;
+	padding: 0.5rem;
+}
+
+.d-grid {
+	display: flex;
+	width: 100%;
+}
+
+.d-container {
+	min-height: 50vh;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	@include grid-system("all");
+}
+
+@each $k, $v in $breakpointsUp {
+	@include up-to("#{$k}") {
+		.row {
+			@include grid-system("#{$k}");
+		}
+	}
+}

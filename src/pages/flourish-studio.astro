@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="Welcome to Astro.">
+	<h1 class="title">Flourish<span class="text-gradient">Studio</span></h1>
+	<p class="subtitle">Exemplo de uso de um gráfico do Flourish.</p>
+
+	<div
+		class="flourish-embed flourish-scatter"
+		data-src="visualisation/12149890"
+	>
+		<script src="https://public.flourish.studio/resources/embed.js"></script>
+	</div>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+
+	.flourish-embed {
+		max-width: 80%;
+		margin: 2rem auto;
+	}
+</style>

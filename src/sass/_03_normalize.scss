@@ -1,0 +1,28 @@
+/// === NORMALIZE === ///
+
+html {
+	box-sizing: border-box;
+	overflow-x: hidden;
+}
+
+* {
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+summary::marker {
+	display: none;
+}
+
+details > summary {
+	list-style: none;
+}
