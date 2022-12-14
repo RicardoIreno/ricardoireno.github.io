@@ -1,0 +1,28 @@
+---
+import Card from "../components/Card.astro"
+---
+
+<ul role="list" class="card-list">
+	<Card href="/" title="Home" body="Página inicial" />
+	<Card
+		href="/flourish-studio"
+		title="Gráfico do Flourish"
+		body="Exemplo de uso de um gráfico Flourish"
+	/>
+	<Card
+		href="/google-data-studio"
+		title="Gráfico do Google Data Studio"
+		body="Exemplo de uso do Google Data Studio"
+	/>
+	<Card
+		href="planilha/"
+		title="Planilha do Google"
+		body="Umaplanilha do google embutida"
+	/>
+</ul>
+
+<style>
+	.card-list {
+		margin-inline: 1rem 0.5rem;
+	}
+</style>
