@@ -1,0 +1,50 @@
+---
+import '../sass/global.scss'
+import Header from '@organisms/Header.astro'
+import Footer from '@organisms/Footer.astro'
+import Head from '@organisms/Head.astro'
+import ButtonBackToTop from '@molecules/ButtonBackToTop.astro'
+import ButtonBack from '@molecules/ButtonBack.astro'
+
+interface Props {
+  title: string
+  btnback?: boolean
+}
+
+const { title, btnback } = Astro.props
+---
+
+<>
+  <html lang="pt-br">
+    <Head title={title} />
+
+    <body>
+      <Header btnback={btnback} />
+      <div class="site-content">
+        <slot />
+      </div>
+      <div class="controls">
+        {
+          btnback && (
+            <>
+              <ButtonBack />
+              <ButtonBackToTop />
+            </>
+          )
+        }
+      </div>
+      <Footer />
+    </body>
+  </html>
+</>
+
+<style lang="scss" type="text/css" is:global>
+  @use '../sass/vars' as *;
+  @use '../sass/abstracts' as *;
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+</style>

@@ -1,0 +1,48 @@
+///
+/// === UTILLITIES === ///
+///
+
+.alignament {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.centered {
+  text-align: center;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.bold {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/// === SPACING === ///
+
+$spaceAmounts: (1, 2, 3, 4, 5);
+
+@each $space in $spaceAmounts {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+
+  .mx-#{$space} {
+    margin-inline: #{$space}rem;
+  }
+
+  .my-#{$space} {
+    margin-block: #{$space}rem;
+  }
+
+  .mb-#{$space} {
+    margin-bottom: #{$space}rem;
+  }
+
+  .mt-#{$space} {
+    margin-top: #{$space}rem;
+  }
+}

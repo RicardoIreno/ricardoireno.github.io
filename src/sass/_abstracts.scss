@@ -1,0 +1,22 @@
+@use './vars' as *;
+
+///
+/// === ABSTRACTS === ///
+///
+///
+
+// === FOR BREAKPOINT === //
+
+@mixin bk($bk) {
+  @if map-has-key($breakpoints, $bk) {
+    @media #{inspect(map-get($breakpoints, $bk))} {
+      @content;
+    }
+  }
+}
+
+// === FOR OTHER SMALL THINGS === //
+
+@mixin transition($t: 250ms) {
+  transition: all $t ease-in-out;
+}

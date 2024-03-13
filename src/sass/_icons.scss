@@ -1,0 +1,44 @@
+///
+/// === ICONS === ///
+///
+@use './vars' as *;
+@use './abstracts' as *;
+
+$icons_margin: 0 8px 0 0;
+
+$icons_size: (
+  'sm': 24px,
+  'md': 36px,
+  'lg': 64px,
+  'menu': 30px,
+);
+
+@mixin mask-image($i) {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,' + $i);
+  mask-image: url('data:image/svg+xml;utf8,' + $i);
+}
+
+@each $i, $ico in $myIconsPack {
+  .i-#{$i} {
+    @include mask-image($ico);
+  }
+}
+
+.i {
+  display: inline-block;
+  margin: 0.25rem;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  @include transition;
+
+  @each $k, $v in $icons_size {
+    &-#{$k} {
+      height: $v;
+      width: $v;
+    }
+  }
+}

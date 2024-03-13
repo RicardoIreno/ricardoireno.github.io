@@ -1,0 +1,89 @@
+---
+import { PESSOAL, SOCIAL } from '@consts'
+---
+
+<footer class="footer inner">
+  <hr class="line" />
+
+  <a class="link" href=`mailto:${PESSOAL.email}` target="_blank">
+    <span class:list={['i', 'i-sm', 'i-mail']}></span>
+    {PESSOAL.email}
+  </a>
+
+  <a class="link" href={PESSOAL.whats_link} target="_blank">
+    <span class:list={['i', 'i-sm', 'i-whatsapp']}></span>
+    {PESSOAL.whats_number}
+  </a>
+
+  <section class="social">
+    {
+      SOCIAL.map((s) => (
+        <a class="ink" href={s.href} target="_blank">
+          <span class:list={['i', 'i-sm', `i-${s.icon}`]} />
+        </a>
+      ))
+    }
+  </section>
+  <span class="yo">
+    Designed and handcrafted by {PESSOAL.name}
+  </span>
+</footer>
+
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  .footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .line {
+    border-top: 1px solid var(--color-primary);
+    margin: 2rem auto 1rem auto;
+    opacity: 0.8;
+    width: calc(100% - 4rem);
+  }
+
+  .pessoal {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .link {
+    align-items: center;
+    color: var(--color-accent);
+    display: flex;
+    @include transition;
+
+    &:hover {
+      color: var(--color-contrast);
+    }
+  }
+
+  .i {
+    background-color: var(--color-accent);
+    @include transition;
+
+    &:hover {
+      background-color: var(--color-contrast);
+    }
+  }
+
+  .yo {
+    color: var(--color-accent);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem auto;
+    flex-wrap: wrap;
+    opacity: 0.6;
+  }
+
+  .social {
+    display: flex;
+    justify-content: center;
+  }
+</style>

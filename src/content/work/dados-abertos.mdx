@@ -1,0 +1,106 @@
+---
+date: '2021-11-25'
+title: 'Dados Abertos Front-end Project'
+description: 'interface that consumes data from the Ckan API'
+thumbnail: '/images/work/dadosabertos/thumb_dadosabertos.jpg'
+tags: ['Front-end', 'Design']
+colors:
+  hue: '209'
+  saturation: '43%'
+  luminance1: '26%'
+  luminance2: '45%'
+sort: 3
+---
+
+import PostPicture from '../../components/molecules/PostPicture.astro'
+import PostContentRow from '../../components/atoms/PostContentRow.astro'
+import PostSection from '../../components/molecules/PostSection.astro'
+
+<PostContentRow>
+  ![Typescript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+  ![React.js](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+  ![Next.js](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+</PostContentRow>
+
+<PostSection>
+
+## About Dados Abertos
+
+This project aims to be a more customizable interface for queries in the Ckan tool. CKAN is an open-source DMS (data management system) for powering data hubs and data portals. CKAN makes it easy to publish, share and use data. It powers hundreds of data portals worldwide. Unfortunately, customize CKAN appearance can be a bit hard. For this reason, a developed this project.
+
+### Ckan
+
+Ckan is a technology developed in Python, and little of another technologies including HTML, Javascript and CSS. It also use Jinja, a templating syntax inspired in Django, Bootstrap, and Jquery.
+
+Ckan provides a API for consuming your data with many options of interaction.
+
+[Know more about Ckan](https://ckan.org/)
+
+## Logomark
+
+<PostPicture
+  title="Logo guidelines and concept"
+  src="/images/work/dadosabertos/logo_guidelines.svg"
+  width="800px"
+  height="400px"
+  description="Logo guidelines and concept"
+/>
+
+I made this logo following a concept of a simple forms but strong mood. The 'A' of the word _ABERTOS_, _OPEN_ in English, with and aberture and a square symbolizing a dice. _DICE_ in Portuguese is _DADO_. A little pun.
+
+The logo and a variation:
+
+<PostPicture
+  title="The Logo"
+  src="/images/work/dadosabertos/logo_finished.svg"
+  width="300px"
+  height="300px"
+  description="Logo finished"
+/>
+
+<PostPicture
+  title="The Logo"
+  src="/images/work/dadosabertos/logo_variant.svg"
+  width="300px"
+  height="300px"
+  description="Variant idea"
+/>
+
+<PostPicture
+  title="Colors variants"
+  src="/images/work/dadosabertos/logo_colors_variants.svg"
+  width="1000px"
+  height="200px"
+  description="Colors variants"
+/>
+
+This is a example showing Ckan page with a negative variant of the logo:
+
+<PostPicture
+  title="Negative example in page"
+  src="/images/work/dadosabertos/page_example.svg"
+  width="1000px"
+  height="500px"
+  description="Negative example in Ckan's page"
+  shadow="true"
+/>
+
+### Frontend proposal for this project
+
+Because the increasing of this amount of technologies together, and because a preference for separating the view layer from other layers, I believe that the Javascript Ecosystem provides a good alternative to deliver a customizable frontend. I developed this concept using Next.js, Typescript and [Stitches](https://stitches.dev/) for styling. Stitches provides a agnostic way to use CSS-in-JS, I'm enjoying using it.
+
+<PostPicture
+  title="Running Dados Abertos"
+  src="/images/work/dadosabertos/page.gif"
+  width="1000px"
+  height="491px"
+  description="Image of the site running"
+  shadow="true"
+/>
+
+### Final considerations
+
+Both the logo and de frontend has not been taken forward, but my work is available in [Github](https://github.com/RicardoIreno/dados-abertos-ckan), and you can see the current website on
+[https://dadosabertos.unifesp.br/](https://dadosabertos.unifesp.br/).
+
+</PostSection>

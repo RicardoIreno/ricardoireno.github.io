@@ -1,0 +1,74 @@
+---
+export interface Props {
+  title?: string
+  description?: string
+  thumbnail: string
+  width?: string
+  type: 'sqr' | 'rct'
+}
+
+const { title, thumbnail, type, width } = Astro.props as Props
+const image = `url(${thumbnail})`
+---
+
+<div class:list={['card', `card-${type}`]}>
+  <!-- <h5>{title}</h5> -->
+</div>
+
+<style lang="scss" type="text/css" define:vars={{ image, width }}>
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  $round_border: 10px;
+  $card_square_size: 300px;
+  $card_square_size_md: 340px;
+
+  .card {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    // margin: 0.5rem;
+    // border-radius: $round_border;
+    // box-shadow: var(--color-gradient-shadow);
+    background-image: var(--image);
+    background-size: cover;
+    background-position: center;
+    @include transition;
+
+    &-sqr {
+      width: $card_square_size;
+      height: $card_square_size;
+    }
+
+    &-rct {
+      width: var(--width);
+      height: $card_square_size;
+    }
+
+    h5 {
+      background-color: hsla(0, 0%, 0%, 0.4);
+      border-radius: 16px;
+      bottom: 0;
+      color: hsl(0, 0%, 100%);
+      margin: 0.5rem;
+      padding: 6px 8px;
+      position: absolute;
+      right: 0;
+      z-index: 3;
+      backdrop-filter: blur(5px);
+    }
+
+    &:hover {
+      z-index: 2;
+    }
+  }
+
+  @include bk('md-up') {
+    .card {
+      &-sqr {
+        width: $card_square_size_md;
+        height: $card_square_size_md;
+      }
+    }
+  }
+</style>

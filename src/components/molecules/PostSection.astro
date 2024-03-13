@@ -1,0 +1,26 @@
+---
+interface Props {
+  background?: string
+}
+
+const { background } = Astro.props
+const props = Astro.props
+---
+
+<section class="container" {...props}>
+  <slot />
+</section>
+
+<style lang="scss" type="text/css" define:vars={{ background }}>
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--background);
+    width: 100%;
+    max-width: $container_width;
+    padding: var(--container-padding);
+  }
+</style>

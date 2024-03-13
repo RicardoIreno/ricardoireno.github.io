@@ -1,0 +1,115 @@
+---
+const slider_data = [
+  {
+    img: 'https://source.unsplash.com/Z8dtTatMVMw',
+    title: 'Titulo 1',
+    desc: 'Desciption 1',
+  },
+  {
+    img: 'https://source.unsplash.com/9dmycbFE7mQ',
+    title: 'Titulo 2',
+    desc: 'Desciption 2',
+  },
+  {
+    img: 'https://source.unsplash.com/m7K4KzL5aQ8',
+    title: 'Titulo 3',
+    desc: 'Desciption 3',
+  },
+  {
+    img: 'https://source.unsplash.com/UKFlrOJ5zSQ',
+    title: 'Titulo 4',
+    desc: 'Desciption 4',
+  },
+  {
+    img: 'https://source.unsplash.com/AGFlrOJ5zSQ',
+    title: 'Titulo 5',
+    desc: 'Desciption 5',
+  },
+]
+---
+
+<div class="slider">
+  <div class="cards">
+    <article class="card">
+      <div class="info">{slider_data[0].title}</div>
+      <img src={slider_data[0].img} alt="" />
+    </article>
+
+    <article class="card card--active">
+      <div class="info">{slider_data[1].title}</div>
+      <img src={slider_data[1].img} alt="" />
+    </article>
+
+    <article class="card">
+      <div class="info">{slider_data[2].title}</div>
+      <img src={slider_data[2].img} alt="" />
+    </article>
+    <article class="card">
+      <div class="info">{slider_data[3].title}</div>
+      <img src={slider_data[3].img} alt="" />
+    </article>
+    <article class="card">
+      <div class="info">{slider_data[4].title}</div>
+      <img src={slider_data[4].img} alt="" />
+    </article>
+  </div>
+</div>
+
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  $slider_width: 1000px;
+  $card_width: 1000px;
+  $card-height: 200px;
+
+  .slider {
+    width: 100%;
+    max-width: $slider_width;
+    height: $card_height;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid red;
+  }
+
+  .cards {
+    position: relative;
+    width: 100%;
+    border: 1px solid red;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.7);
+  }
+
+  .card {
+    @include transition(300ms);
+    width: $card_width;
+    height: $card-height;
+    border: 1px solid red;
+    z-index: 0;
+
+    img {
+      width: $card_width;
+      height: $card-height;
+    }
+
+    &--active {
+      z-index: 2;
+    }
+  }
+</style>
+
+<script>
+  const cardList: NodeListOf<HTMLDivElement> =
+    document.querySelectorAll('.card')
+
+  let counter = 0
+
+  function nextSlide() {
+    cardList.forEach((card) => {
+      card.classList.remove('card--active')
+    })
+    counter = (counter + 1) % cardList.length
+    cardList[counter].classList.add('card--active')
+  }
+
+  setInterval(nextSlide, 5000)
+</script>

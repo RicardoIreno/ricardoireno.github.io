@@ -1,0 +1,93 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Brain from '@molecules/Brain.astro'
+import SectionClients from '@organisms/SectionClients.astro'
+---
+
+<Layout title="Ricardo Ireno">
+  <main>
+    <section class="ycenter mb-3">
+      <div class="intro">
+        <Brain />
+        <h1 class="h0 intro-effect intro-text">
+          I DO
+          <a class="marked marked1" href="work">FRONT-END DEVELOPMENT, DESIGN</a
+          >
+           , AND
+          <a class="marked" href="/artwork">ILLUSTRATIONS</a>
+        </h1>
+      </div>
+    </section>
+  </main>
+
+  <SectionClients />
+</Layout>
+<div class="sides">
+  <div class="artside"></div>
+  <div class="devside"></div>
+</div>
+
+<style lang="scss" type="text/css">
+  @use '../sass/vars' as *;
+  @use '../sass/abstracts' as *;
+  @use '../sass/animations' as *;
+  @use 'sass:map';
+
+  main {
+    margin-top: 4rem;
+    position: relative;
+  }
+  .intro {
+    padding: 1rem;
+  }
+
+  .intro-link {
+    margin: 10px solid var(--color-font-bold);
+  }
+
+  h1 {
+    z-index: 1;
+    margin-top: 2rem;
+  }
+
+  .sides {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 49.5% 50.5%;
+    position: absolute;
+    top: -100px;
+    z-index: -1;
+  }
+
+  .artside,
+  .devside {
+    height: 100vh;
+  }
+
+  .artside {
+    background-image: linear-gradient(
+      180deg,
+      var(--color-background-sideA),
+      hsla(200, 50%, 40%, 0)
+    );
+    width: 49.5vw;
+  }
+  .devside {
+    background-image: linear-gradient(
+      180deg,
+      var(--color-background-sideB),
+      hsla(200, 50%, 40%, 0)
+    );
+    width: 50.5 '' 0.5%vw;
+  }
+
+  .marked {
+    border-bottom: 2px solid var(--color-primary-alpha1);
+  }
+
+  @include bk('md-up') {
+    .marked {
+      border-bottom: 8px solid var(--color-primary-alpha1);
+    }
+  }
+</style>

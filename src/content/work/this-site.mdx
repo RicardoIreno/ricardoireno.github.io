@@ -1,0 +1,225 @@
+---
+title: This Site Project
+description: Site portfolio made with Typescript and Astro Frmework
+thumbnail: '/images/work/this_site/thumb_this_site.jpg'
+tags: ['Front-end', 'Design']
+colors:
+  hue: '280'
+  saturation: '100%'
+  luminance1: '12%'
+  luminance2: '22%'
+sort: 2
+---
+
+import PostSection from '../../components/molecules/PostSection.astro'
+
+<PostSection>
+
+This post is about my portfolio. Here I talk a little about features used in this site. I build this site using Typescript and [Astro Framework](https://astro.build/), and SASS.
+
+Astro is a static site builder that can generate lightweight static HTML pages from UI components built in other frameworks such as React, Svelte and Vue. So, the architecture of this site is based on Islands Architecture. Static components server rendered HTML. Only interactive components require scripts.
+
+## SASS
+
+I separate the `.scss` code in a few files.
+
+```
+_abstract.scss
+_animations.scss
+_containers.scss
+_icons.scss
+_normalize.scss
+_root.scss
+_typography.scss
+_utils.scss
+_vars.scss
+```
+
+Main variables in a `_vars.scss` file, all about text in `_typographic.scss`, `_root.scss` for CSS variables that will change depending on the breakpint and color mode rules. All content of this files are ghatered in a `global.scss` file, and operate throughout the site. Besides that, each Astro component has your own scoped SASS code. When necessary, I call `_vars.scss` and `_abstract.scss`.
+
+Here some features used in this site:
+
+### Colors
+
+The Hue, Saturation, Luminance scheme always looks great for me, making it easier to view and change colors without the need to consult hexadecimal or RGB color codes. So,
+
+In `_vars.scss` file:
+
+```scss
+$colors: (
+  'default': (
+    'background': (
+      '1': 'hsl(0, 0%, 20%)',
+      '2': 'hsl(0, 0%, 30%)',
+    ),
+    'primary': (
+      'base': 'hsl(280, 100%, 32%)',
+      'alpha1': 'hsla(280, 100%, 32%, .5)',
+      'alpha2': 'hsla(280, 100%, 32%, .9)',
+    ),
+    'accent': (
+      'base': 'hsl(167, 60%, 65%)',
+    ),
+    'contrast': (
+      'base': 'hsl(7, 100%, 65%)',
+    ),
+    'gradient': (
+      'background':
+        'radial-gradient(farthest-corner at bottom,var(--color-primary-alpha1),transparent)',
+      'titles':
+        'linear-gradient(45deg, var(--color-primary), var(--color-accent))',
+      // ...
+    ),
+  ),
+);
+```
+
+Then I make root variables:
+
+```scss
+@each $t, $color-array in $colors {
+  $theme: '[data-theme=#{$t}]';
+  @if $t == 'default' {
+    $theme: ':root, [data-theme="default"]';
+  }
+
+  #{$theme} {
+    @each $main-color, $variation-array in $color-array {
+      @each $variation, $hsl in $variation-array {
+        $appendix: #{'-' + $variation};
+        @if $variation == 'base' {
+          $appendix: '';
+        }
+        --color-#{$main-color}#{$appendix}: #{$hsl};
+      }
+    }
+  }
+}
+```
+
+### Breakpints
+
+In `_vars.scss` file:
+
+```scss
+$breakpoints: (
+  'until-sm': (
+    max-width: 669px,
+  ),
+  'sm-up': (
+    min-width: 700px,
+  ),
+  'until-md': (
+    max-width: 899px,
+  ),
+  'md-up': (
+    min-width: 900px,
+  ),
+  'until-lg': (
+    max-width: 1299px,
+  ),
+  'lg-up': (
+    min-width: 1300px,
+  ),
+) !default;
+```
+
+In `_abstract.scss` file:
+
+```scss
+@mixin bk($bk) {
+  @if map-has-key($breakpoints, $bk) {
+    @media #{inspect(map-get($breakpoints, $bk))} {
+      @content;
+    }
+  }
+}
+```
+
+### Headings
+
+In `_vars.scss` file:
+
+```scss
+$heading_sizes: (
+  0: '1.6rem, 5vw, 4rem',
+  1: '1.4rem, 3vw, 3rem',
+  2: '1.3rem, 3vw, 2rem',
+  3: '1.2rem, 3vw, 1.6rem',
+  4: '1.2rem, 3vw, 1.6rem',
+  5: '1.1rem, 3vw, 1.5rem',
+);
+```
+
+In `_typography.scss` file:
+
+```scss
+@each $k, $v in $heading_sizes {
+  .h#{$k} {
+    font-size: clamp(#{$v});
+  }
+}
+```
+
+### Icons
+
+For the icons, I prefer use `.svg` code inserted in CSS through `mark-image` property. In this way, I can give color to icon using `background-color` property, and it allows to change icons colors easily. Upside: fewer image loading connections, and easier use. Downside: increase of .css file size depending on the quantity, and complexity, of .svg icons used in the project. I Use the same in [Prodmais](/work/prodmais) project.
+
+In `vars.scss` file:
+
+```scss
+///...
+$myIconsPack: (
+  home:
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'> ... </svg>",
+  mail:
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'> ... </svg>",
+  //...
+);
+```
+
+Because `mask-image` is not fully supported in Chrome browser, I use this simple mixin:
+
+```scss
+@mixin mask-image($i) {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,' + $i);
+  mask-image: url('data:image/svg+xml;utf8,' + $i);
+}
+```
+
+With this following class I create the icon and this sizes:
+
+```scss
+$icons_size: (
+  'sm': 24px,
+  'md': 36px,
+  'lg': 64px,
+  'menu': 30px,
+);
+
+.i {
+  display: inline-block;
+  margin: 0.25rem;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+
+  @each $k, $v in $icons_size {
+    &-#{$k} {
+      height: $v;
+      width: $v;
+    }
+  }
+}
+```
+
+It can used in this way:
+
+```html
+<i class-"i i-home i-sm"></i>
+```
+
+</PostSection>

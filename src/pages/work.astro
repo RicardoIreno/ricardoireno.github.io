@@ -1,0 +1,54 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Brain from '@molecules/Brain.astro'
+import CardWork from '@molecules/CardWork.astro'
+import { getCollection } from 'astro:content'
+
+const posts = (
+  await getCollection('work', (p) => {
+    return p.data.draft != 'true'
+  })
+).sort((a, b) => a.data.sort.valueOf() - b.data.sort.valueOf())
+---
+
+<Layout title="Front-end projects" btnback>
+  <main>
+    <span id="top"></span>
+    <div class="inner">
+      <section class="mt-4 ycenter">
+        <Brain />
+        <div class="intro">
+          <h2 class="h1 text-gradient centered">
+            I present information in a simple, organized, and attractive way.
+          </h2>
+        </div>
+      </section>
+
+      <section class="inner">
+        <ul class="list">
+          {
+            posts.map((post) => (
+              <li>
+                <a href={`/work/${post.slug}/`}>
+                  <CardWork
+                    title={post.data.title}
+                    thumbnail={post.data.thumbnail}
+                    description={post.data.description}
+                    tags={post.data.tags}
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </main>
+</Layout>
+<style lang="scss" type="text/css">
+  .list {
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+  }
+</style>

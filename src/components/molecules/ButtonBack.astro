@@ -1,0 +1,44 @@
+---
+
+---
+
+<a class="back-history" onclick="window.history.back()">
+  <i class="i i-arrow-left"></i>
+   BACK
+</a>
+
+<style lang="scss" type="text/css" is:global>
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  .i-arrow-up,
+  .back-history {
+    @include transition;
+  }
+
+  .i-arrow-left {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-accent);
+    // transform: translateY(10px);
+  }
+
+  .back-history {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent);
+    transform: translateY(13px);
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-contrast);
+
+      .i-arrow-left {
+        background-color: var(--color-contrast);
+        transform: translateX(-5px);
+      }
+    }
+  }
+</style>

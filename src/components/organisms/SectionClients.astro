@@ -1,0 +1,98 @@
+---
+const clients = [
+  {
+    client: 'Unifesp',
+    logo: '/images/clients/unifesp.svg',
+    adress: 'https://www.unifesp.br/',
+  },
+  {
+    client: 'STI Unifesp',
+    logo: '/images/clients/sti.svg',
+    adress: 'https://sti.unifesp.br/',
+  },
+  {
+    client: 'SoU_Ciência',
+    logo: '/images/clients/sou_ciencia.svg',
+    adress: 'https://souciencia.unifesp.br/',
+  },
+  {
+    client: 'Blash Descolados',
+    logo: '/images/clients/blash.svg',
+    adress: 'https://blashdescolados.mercadoshops.com.br/',
+  },
+  {
+    client: 'Sandy Ende',
+    logo: '/images/clients/sandy_ende.svg',
+    adress: 'https://www.linkedin.com/in/sandyende',
+  },
+]
+---
+
+<div class="content">
+  <h2 class="h2 text-gradient centered">CLIENTS</h2>
+
+  <section class="clients">
+    {
+      clients.map((c) => (
+        <a href={c.adress} target="_blank">
+          <img src={c.logo} alt={c.client} />
+        </a>
+      ))
+    }
+  </section>
+</div>
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+  @use '../../sass/animations' as *;
+
+  $max_width: 150px;
+  $max_height: 75px;
+  $max_width_md: 200px;
+  $max_height_md: 100px;
+
+  .content,
+  .clients {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+  }
+
+  .content {
+    flex-direction: column;
+    margin-top: 9rem;
+  }
+
+  .clients {
+    flex-wrap: wrap;
+    max-width: 1200px;
+
+    a {
+      width: 100%;
+      max-width: $max_width;
+      max-height: $max_height;
+      margin: 1rem;
+      display: flex;
+      align-content: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: $max_width;
+      max-height: $max_height;
+    }
+
+    @include bk('md-up') {
+      a {
+        max-width: $max_width_md;
+        max-height: $max_height_md;
+      }
+
+      img {
+        max-width: $max_width_md;
+        max-height: $max_height_md;
+      }
+    }
+  }
+</style>

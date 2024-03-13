@@ -1,0 +1,198 @@
+---
+import { ROUTES } from '@consts'
+---
+
+<nav role="navigation" class="nav">
+  <input type="checkbox" id="active" />
+  <label for="active" class="menu-btn"><span></span></label>
+  <label for="active" class="close"></label>
+
+  <div class="wrapper">
+    <p class="hidden1">RICARD OIRENO</p>
+    <p class="hidden2">PORTFOLIO</p>
+    <ul>
+      {
+        ROUTES.map((route) => (
+          <li>
+            <a href={route.href} title={route.label.toLocaleUpperCase()}>
+              <span class:list={['i', `i-${route.icon}`]} />
+              {route.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+  @use 'sass:map';
+
+  .wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    @include transition;
+    z-index: 2;
+  }
+
+  #active:checked ~ .wrapper {
+    right: 0;
+  }
+
+  .menu-btn {
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    line-height: 50px;
+    right: $controls_margin;
+    top: $controls_margin;
+    text-align: center;
+    z-index: 99;
+    width: 50px;
+    border-radius: 50%;
+    @include transition;
+  }
+
+  ul {
+    list-style: none;
+    text-align: center;
+  }
+
+  a {
+    color: var(--color-font-menu);
+    font-family: $font_family_B;
+    @include transition;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  @include bk('until-md') {
+    #active:checked + .menu-btn {
+      position: fixed;
+    }
+
+    .wrapper {
+      position: fixed;
+      background-color: var(--color-background-menu);
+      height: 100%;
+      width: 100%;
+    }
+
+    ul {
+      margin-top: 3rem;
+    }
+
+    .i {
+      background-color: var(--color-font-menu);
+      width: 30px;
+      height: 30px;
+    }
+
+    a {
+      align-items: center;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      max-width: 200px;
+      border-bottom: 1px solid var(--color-font-menu);
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+
+    .hidden1,
+    .hidden2 {
+      color: var(--color-font-menu);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hidden1 {
+      margin: 3rem auto auto auto;
+      font-family: $font_family_B;
+    }
+  }
+
+  @include bk('md-up') {
+    .menu-btn {
+      height: 70px;
+      width: 70px;
+    }
+
+    .wrapper {
+      position: absolute;
+      width: 600px;
+      margin: 1rem 0 1rem 1rem;
+      background-color: var(--color-background-1);
+      border-radius: 2rem 0 0 2rem;
+      box-shadow: var(--color-gradient-shadow2);
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 100px 1rem 0;
+      // transform: translateY(-6px);
+    }
+
+    li {
+      margin-inline: 1rem;
+    }
+
+    .hidden1,
+    .hidden2 {
+      display: none;
+    }
+  }
+
+  /// === BTN EFFECT === ///
+
+  .menu-btn span,
+  .menu-btn:before,
+  .menu-btn:after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 30%;
+    width: 40%;
+    border-bottom: 2px solid var(--color-font-menu);
+    transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .menu-btn:before {
+    transform: translateY(-8px);
+  }
+  .menu-btn:after {
+    transform: translateY(8px);
+  }
+
+  .close {
+    height: 100%;
+    pointer-events: none;
+    transition: background 0.6s;
+    width: 100%;
+    z-index: 1;
+  }
+
+  /* closing animation */
+  #active:checked + .menu-btn span {
+    transform: scaleX(0);
+  }
+  #active:checked + .menu-btn:before {
+    transform: rotate(45deg);
+    border-color: #fff;
+  }
+  #active:checked + .menu-btn:after {
+    transform: rotate(-45deg);
+    border-color: #fff;
+  }
+
+  input[type='checkbox'] {
+    display: none;
+  }
+</style>

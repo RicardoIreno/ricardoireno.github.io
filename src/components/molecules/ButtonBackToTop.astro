@@ -1,0 +1,45 @@
+---
+
+---
+
+<a class="back-to-top" href="#top">
+  <i class="i i-arrow-up"></i>
+   TOP
+</a>
+
+<style lang="scss" type="text/css" is:global>
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  .i-arrow-up,
+  .back-to-top {
+    @include transition;
+  }
+
+  .i-arrow-up {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-accent);
+    transform: translateY(10px);
+  }
+
+  .back-to-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    color: var(--color-accent);
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-contrast);
+
+      .i-arrow-up {
+        background-color: var(--color-contrast);
+        transform: translateY(5px);
+      }
+    }
+  }
+</style>

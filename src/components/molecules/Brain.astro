@@ -1,0 +1,53 @@
+---
+
+---
+
+<div class="brain">
+  <img
+    class="brain-left"
+    src="/images/brain/mybrain_left.svg"
+    loading="lazy"
+    alt="Logic side"
+    title="Logic side"
+  />
+  <img
+    class="brain-right"
+    src="/images/brain/mybrain_right.svg"
+    loading="lazy"
+    alt="Artistic side"
+    title="Artistic side"
+  />
+</div>
+
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+  @use '../../sass/animations' as *;
+
+  .brain {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  @include bk('md-up') {
+    .brain {
+      &-left {
+        animation:
+          shine_animation 10s infinite linear,
+          brain_left_animation 3s infinite ease-in-out;
+      }
+
+      &-right {
+        animation:
+          shine_animation 10s infinite linear,
+          brain_right_animation 3s infinite ease-in-out;
+      }
+    }
+  }
+</style>

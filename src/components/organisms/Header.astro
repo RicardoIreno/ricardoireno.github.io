@@ -1,0 +1,31 @@
+---
+import Menu from './Menu.astro'
+---
+
+<header>
+  <Menu />
+</header>
+
+<style lang="scss" type="text/css">
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  header {
+    // background-color: var(--color-background-header);
+    height: 55px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @include bk('md-up') {
+    header {
+      justify-content: flex-end;
+      padding-inline: 3rem;
+    }
+  }
+</style>

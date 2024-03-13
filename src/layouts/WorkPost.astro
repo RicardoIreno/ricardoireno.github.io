@@ -1,0 +1,138 @@
+---
+import Layout from '@layouts/Layout.astro'
+import type { CollectionEntry } from 'astro:content'
+type Props = CollectionEntry<'work'>['data']
+
+const { title, description, colors, tags } = Astro.props
+
+const postHue = colors.hue
+const postSaturation = colors.saturation
+const postLuminance1 = colors.luminance1
+const postLuminance2 = colors.luminance2
+---
+
+<Layout title={title} btnback>
+  <div class="header section">
+    <h1 class="h0">{title}</h1>
+    <h2 class="h2">{description}</h2>
+    <div class="c-tags">
+      {tags.map((t) => <span>{t}</span>)}
+    </div>
+    <a href="/work" class="my-name">Ricardo Ireno Portfolio</a>
+  </div>
+  <article class="container">
+    <div class="mdx-content inner">
+      <slot />
+    </div>
+  </article>
+</Layout>
+
+<style
+  lang="scss"
+  type="text/css"
+  define:vars={{ postHue, postSaturation, postLuminance1, postLuminance2 }}
+>
+  @use '../sass/vars' as *;
+  @use '../sass/abstracts' as *;
+  @use 'sass:map';
+
+  .container {
+    width: 100%;
+    text-align: justify;
+  }
+
+  .header {
+    top: 0;
+    padding-top: 130px;
+    background-image: linear-gradient(
+      45deg,
+      hsl(var(--postHue), var(--postSaturation), var(--postLuminance1)),
+      hsl(var(--postHue), var(--postSaturation), var(--postLuminance2))
+    );
+    text-align: center;
+
+    p {
+      font-size: 2rem;
+      max-width: 900px;
+      text-align: center;
+      margin: 1rem auto;
+    }
+  }
+
+  .header .img-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .line {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-block: 1rem;
+  }
+
+  .my-name {
+    color: hsla(100, 0%, 92%, 0.6);
+    font-size: 1.2rem;
+    @include transition;
+
+    &:before {
+      content: '\276E';
+      margin-right: 0.5rem;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  .i-arrow-left {
+    background-color: hsla(100, 0%, 92%, 0.6);
+    width: 24px;
+    height: 24px;
+    transform: translateY(6px);
+  }
+
+  .h0 {
+    color: hsl(100, 0%, 90%);
+  }
+  .h2 {
+    color: var(--color-font-fg);
+    max-width: 900px;
+    margin: auto;
+    font-family: $font_family_A;
+  }
+
+  .work-description {
+    font-size: 1.7rem;
+    color: hsl(100, 0%, 92%);
+    max-width: 900px;
+    margin: 1rem auto 2rem auto;
+    text-align: center;
+  }
+
+  .c-tags {
+    margin-block: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 0.8rem;
+    }
+    span {
+      margin-inline: 0.2rem;
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      background-color: hsla(var(--postHue), var(--postSaturation), 100%, 0.3);
+      padding: 0.2rem 0.3rem;
+      border-radius: 6px;
+      box-shadow: 0px 4px 0px 2px
+        hsla(var(--postHue), var(--postSaturation), 0%, 0.2);
+    }
+  }
+</style>

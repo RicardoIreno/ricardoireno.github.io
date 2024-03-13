@@ -1,0 +1,191 @@
+///
+/// === TYPOGRAPHY === ///
+///
+@use './vars' as *;
+@use './abstracts' as *;
+@use 'sass:string';
+@use 'sass:map';
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-weight: 125 950;
+  src: url('/fonts/space_grotesk/SpaceGrotesk-variable_wght.ttf')
+    format('truetype');
+}
+
+html {
+  color: var(--color-font);
+  font-family: $font_family_A;
+}
+
+pre {
+  margin: 2.3rem 0;
+}
+
+code {
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+  margin: 2rem 0;
+}
+
+p,
+li {
+  color: var(--color-font);
+  font-size: var(--font-size-normal);
+  line-height: $font_line_height;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mdx-content a,
+.link,
+.link:visited {
+  color: var(--color-accent);
+  @include transition;
+
+  &:hover {
+    color: (var(--color-hightlight));
+  }
+}
+
+///
+/// === HEADINGS === ///
+///
+
+@each $k, $v in $heading_sizes {
+  .h#{$k} {
+    font-size: clamp(#{$v});
+  }
+}
+
+.h0 {
+  color: var(--color-font-title);
+  font-family: $font_family_B;
+  font-weight: 900;
+  line-height: var(--line-height-heading);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4,
+.mdx-content h5 {
+  color: var(--color-font-title);
+  font-family: $font_family_B;
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+}
+
+.mdx-content h1,
+.mdx-content h2,
+.mdx-content h3,
+.mdx-content h4,
+.mdx-content h5 {
+  margin-block: 2rem;
+}
+
+.mdx-content {
+  @each $k, $v in $heading_sizes {
+    h#{$k} {
+      font-size: clamp(#{$v});
+    }
+  }
+}
+.content-row p {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+///
+/// === SPECIALS === ///
+///
+
+.intro-effect,
+.text-gradient {
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: var(--color-gradient-titles);
+  background-position: 0%;
+  background-size: 100%;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro-effect {
+  animation: shine_animation 10s infinite linear;
+  text-align: center;
+}
+
+///
+/// === MAKDOWN CONTENT === ///
+///
+
+.mdx-content {
+  strong {
+    font-weight: 700;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 1.7rem;
+  }
+
+  blockquote {
+    background-color: rgb(255, 255, 255, 0.3);
+    border-left: 10px solid var(--color-primary);
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    padding: 1rem 1.5rem;
+    position: relative;
+    quotes: '\201C' '\201D' '\2018' '\2019';
+  }
+  blockquote:before {
+    color: rgb(255, 255, 255, 0.5);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin: 1rem 0.25em 0 0;
+    position: absolute;
+    top: 1rem;
+  }
+  blockquote p {
+    display: inline;
+    margin-left: 2rem;
+  }
+
+  cite {
+    display: block;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  cite:before {
+    content: '— ';
+  }
+}
+
+// ====
+
+.tcolor {
+  border: 1px solid hsla(0, 0%, 90%, 0.7);
+  border-radius: 8px;
+  height: 100px;
+  width: 100px;
+}

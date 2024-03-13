@@ -1,0 +1,59 @@
+///
+/// === GRID SYSTEM === ///
+///
+@use './vars' as *;
+@use './abstracts' as *;
+@use 'sass:map';
+
+$grid_columns: 12;
+$grid_witdh: 100%;
+$grid_breakpoints: ('sm-up', 'md-up', 'lg-up');
+
+@function grid-generic-class-name($bk) {
+  @if $bk == 'all' {
+    @return '';
+  }
+  @return '-' + $bk;
+}
+
+@function grid-class-name($bk, $size) {
+  @if $bk == 'all' {
+    @return '-' + $size;
+  }
+  @return '-' + $bk + '-' + $size;
+}
+
+@mixin grid-system($bk) {
+  .col#{grid-generic-class-name($bk)} {
+    flex: 1;
+  }
+
+  @for $size from 1 through $grid_columns {
+    .col#{grid-class-name($bk, $size)} {
+      width: calc(#{$size} / #{$grid_columns} * 100%);
+    }
+  }
+}
+
+.grid-container {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $grid_witdh;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  @include grid-system('all');
+}
+
+@each $k, $v in $grid_breakpoints {
+  @include bk('#{$k}') {
+    .row {
+      @include grid-system('#{$k}');
+    }
+  }
+}

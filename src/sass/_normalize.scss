@@ -1,0 +1,80 @@
+///
+/// === NORMALIZE === ///
+///
+@use './vars' as *;
+
+html {
+  background-color: var(--color-background-1);
+  background-image: var(--background-gradient);
+  background-size: 224px;
+  background-size: 400%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+* {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+main {
+  line-height: $font_line_height;
+  width: 100%;
+  // max-width: calc(100% - var(--container-padding));
+}
+
+summary::marker {
+  display: none;
+}
+
+details > summary {
+  list-style: none;
+}
+
+pre {
+  border-radius: 10px;
+  margin-block: 0.5rem;
+  padding: 1rem;
+}
+
+p code {
+  font-weight: 700;
+}
+///
+/// ===  ACESSIBILITY === ///
+///
+
+.u-sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.u-skip {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+.u-skip:focus {
+  height: auto;
+  position: static;
+  width: auto;
+}

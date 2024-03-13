@@ -1,0 +1,32 @@
+---
+export interface Props {
+  maxWidth?: string
+}
+
+const props = Astro.props
+const { maxWidth } = Astro.props as Props
+---
+
+<div class:list={['content-row', { maxWidth }]} {...props}>
+  <slot />
+</div>
+
+<style lang="scss" type="text/css" define:vars={{ maxWidth }}>
+  @use '../../sass/vars' as *;
+  @use '../../sass/abstracts' as *;
+
+  .c-container {
+    width: 100%;
+    max-width: var(--maxWidth);
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .maxWidth {
+    max-width: var(--maxWidth);
+  }
+</style>

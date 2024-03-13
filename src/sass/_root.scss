@@ -1,0 +1,35 @@
+///
+/// === THEME === ///
+///
+@use './vars' as *;
+@use './abstracts' as *;
+
+@each $t, $color-array in $colors {
+  $theme: '[data-theme=#{$t}]';
+  @if $t == 'default' {
+    $theme: ':root, [data-theme="default"]';
+  }
+
+  #{$theme} {
+    @each $main-color, $variation-array in $color-array {
+      @each $variation, $hsl in $variation-array {
+        $appendix: #{'-' + $variation};
+        @if $variation == 'base' {
+          $appendix: '';
+        }
+        --color-#{$main-color}#{$appendix}: #{$hsl};
+      }
+    }
+  }
+}
+
+@include make-root;
+
+@include bk('md-up') {
+  @include make-root-md;
+}
+
+// @media (prefers-color-scheme: light) {
+//   :root {
+//   }
+// }
