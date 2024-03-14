@@ -17,14 +17,4 @@ const work = defineCollection({
   }),
 })
 
-const artwork = defineCollection({
-  schema: z.object({
-    title: z.string().optional(),
-    description: z.string().optional(),
-    thumbnail: z.string(),
-    sort: z.number(),
-    draft: z.string().optional(),
-  }),
-})
-
-export const collections = { work, artwork }
+export const collections = { work }

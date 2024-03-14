@@ -2,6 +2,14 @@
 import Layout from '@layouts/Layout.astro'
 import Brain from '@molecules/Brain.astro'
 import SectionClients from '@organisms/SectionClients.astro'
+import CardWork from '@molecules/CardWork.astro'
+import { getCollection } from 'astro:content'
+
+const posts = (
+	await getCollection('work', (p) => {
+		return p.data.draft != 'true'
+	})
+).sort((a, b) => a.data.sort.valueOf() - b.data.sort.valueOf())
 ---
 
 <Layout title="Ricardo Ireno">
@@ -15,7 +23,28 @@ import SectionClients from '@organisms/SectionClients.astro'
 						>FRONT-END DESIGN AND DEVELOPMENT</a
 					>
 				</h1>
+				<h2 class="h1 text-gradient centered">
+					I present information in a simple, organized, and attractive way.
+				</h2>
 			</div>
+		</section>
+		<section class="inner">
+			<ul class="list">
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/work/${post.slug}/`}>
+								<CardWork
+									title={post.data.title}
+									thumbnail={post.data.thumbnail}
+									description={post.data.description}
+									tags={post.data.tags}
+								/>
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</section>
 	</main>
 
@@ -88,5 +117,11 @@ import SectionClients from '@organisms/SectionClients.astro'
 		.marked {
 			border-bottom: 8px solid var(--color-primary-alpha1);
 		}
+	}
+
+	.list {
+		display: flex;
+		list-style-type: none;
+		flex-direction: column;
 	}
 </style>

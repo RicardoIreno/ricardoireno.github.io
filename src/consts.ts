@@ -50,16 +50,6 @@ export const ROUTES = [
     label: 'Home',
   },
   {
-    href: '/artwork',
-    icon: 'brush',
-    label: 'Artwork',
-  },
-  {
-    href: '/work',
-    icon: 'code',
-    label: 'Work',
-  },
-  {
     href: '/about',
     icon: 'about',
     label: 'About',
