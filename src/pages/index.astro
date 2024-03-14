@@ -17,15 +17,10 @@ const posts = (
 		<section class="ycenter mb-3">
 			<div class="intro">
 				<Brain />
-				<h1 class="h0 intro-effect intro-text">
-					I DO
-					<a class="marked marked1" href="work"
-						>FRONT-END DESIGN AND DEVELOPMENT</a
-					>
+				<h1 class="h1 intro-effect intro-text">
+					I present information in a simple, organized,<br />
+					 and attractive front-end design.
 				</h1>
-				<h2 class="h1 text-gradient centered">
-					I present information in a simple, organized, and attractive way.
-				</h2>
 			</div>
 		</section>
 		<section class="inner">
@@ -67,6 +62,12 @@ const posts = (
 	}
 	.intro {
 		padding: 1rem;
+	}
+
+	.intro-text {
+		line-height: clamp(2rem, 4vw, 3.6rem);
+		animation: shine_animation 10s infinite linear;
+		text-align: center;
 	}
 
 	.intro-link {

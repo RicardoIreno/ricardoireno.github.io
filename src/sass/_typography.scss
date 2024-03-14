@@ -117,7 +117,7 @@ a {
 /// === SPECIALS === ///
 ///
 
-.intro-effect,
+.intro-text,
 .text-gradient {
   -webkit-background-clip: text;
   background-clip: text;
@@ -125,11 +125,6 @@ a {
   background-position: 0%;
   background-size: 100%;
   -webkit-text-fill-color: transparent;
-}
-
-.intro-effect {
-  animation: shine_animation 10s infinite linear;
-  text-align: center;
 }
 
 ///
